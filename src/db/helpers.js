@@ -3,4 +3,8 @@ const insert = (tableName,body) => `INSERT INTO ${tableName} (${Object.keys(body
 
 const select = (tableName,parameters='*',whereClause='') => `SELECT ${Object.keys(parameters).join(",")} FROM ${tableName} ${whereClause};`
 
-module.exports = {insert,select}
+
+const update = (tableName,body,whereClause='') => `UPDATE ${tableName} SET ${Object.entries(body).map(([key,value])=>`${key}='${value}'`).join(` , `)}  WHERE ${Object.entries(whereClause).map(([key,value])=>`${key}=${typeof value==='string'?`'${value}'`:value}`).join(` AND `)};`
+
+
+module.exports = {insert,select,update}
