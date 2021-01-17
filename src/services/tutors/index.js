@@ -3,6 +3,19 @@ const db = require("../../db")
 const generate = require("../../db/helpers") 
 
 
+router.get("/",async(req,res,next)=>{
+    try{
+        //
+        const selectQuery =  generate.select("tutors",req.query);
+        const {rows} = await db.query(selectQuery)
+        res.send(rows)
+    }
+    catch(e){
+        console.log(e)
+        res.status(500).send(e)
+    }
+})
+
 
 router.post("/",async(req,res,next)=>{
     try{
