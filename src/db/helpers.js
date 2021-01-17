@@ -6,5 +6,7 @@ const select = (tableName,parameters='*',whereClause='') => `SELECT ${Object.key
 
 const update = (tableName,body,whereClause='') => `UPDATE ${tableName} SET ${Object.entries(body).map(([key,value])=>`${key}='${value}'`).join(` , `)}  WHERE ${Object.entries(whereClause).map(([key,value])=>`${key}=${typeof value==='string'?`'${value}'`:value}`).join(` AND `)};`
 
+const remove = (tableName,whereClause='') => `DELETE FROM ${tableName} WHERE ${Object.entries(whereClause).map(([key,value])=>`${key}=${typeof value==='string'?`'${value}'`:value}`).join(` AND `)};`
 
-module.exports = {insert,select,update}
+ 
+module.exports = {insert,select,update,delete:remove}

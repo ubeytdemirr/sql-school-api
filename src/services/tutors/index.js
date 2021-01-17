@@ -44,6 +44,20 @@ router.put("/:id",async(req,res,next)=>{
 
 
 
+router.delete("/:id",async(req,res,next)=>{
+    try{
+        //
+        const deleteQuery = generate.delete('tutors',{id:parseInt(req.params.id)})
+        const dbResponse = await db.query(deleteQuery);
+        res.send(dbResponse)
+    }
+    catch(e){
+        res.status(500).send(e)
+    }
+})
+
+
+
 
 
 
